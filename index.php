@@ -13,45 +13,97 @@
  */
 
 get_header();
+
 ?>
 
 	<main id="primary" class="site-main">
 
-		<?php
-		if ( have_posts() ) :
+	  <div  class="banner" style="background-color: <?php echo get_theme_mod('banner-background_color', '#FFFFFF'); ?>;height:200px">
+    	<h1 class="banner-heading" style="color: <?php echo get_theme_mod('banner-typography'); ?>;">
+        <!-- <?php echo esc_html(get_theme_mod('my_custom_text', 'Typography will apply here!')); ?> -->
 
-			if ( is_home() && ! is_front_page() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-				</header>
-				<?php
-			endif;
+		Typography will apply here!
+   	    </h1>
+		   
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+	  </div>
+	  
+	  <!-- about section -->
+	  <div class="about">
+		about section
+	  </div>
+	  
+	</main>
+	<!-- #main -->
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+<!-- test -->
+<!-- code editor -->
 
-			endwhile;
+<?php echo get_theme_mod( 'code_setting', '' ); ?>
 
-			the_posts_navigation();
+<!-- typography -->
+<?php
 
-		else :
+$value = get_theme_mod( 'typography_setting', [] );
 
-			get_template_part( 'template-parts/content', 'none' );
+$generic = get_theme_mod('generic_custom_setting', []);
 
-		endif;
-		?>
+// echo '<p>' . sprintf( esc_html__( 'Typography styles will apply on this p tag' ), $value['font-family'] ) . '</p>';
 
-	</main><!-- #main -->
+// echo '<h1>' . sprintf( esc_html__( 'Typography styles will apply on this h1 tag' ), $value['font-family'] ) . '</h1>';
+
+?>
+
+<!-- generic is used to create any type of input field -->
+
+
+<input type="password" style="background-color:white;color:red;" data-foo="bar" />
+
+<!-- date -->
 
 <?php
-get_sidebar();
-get_footer();
+
+$date = get_theme_mod( 'date_setting' );
+
+// echo esc_html( $date );
+
+// echo '<p>' . sprintf( esc_html__( 'Slider value' ), $slider ) . '</p>';
+
+?>
+
+<label for="">Date</label>
+<input type="date" value=<?php echo esc_html( $date ) ?>>
+
+<?php
+	// slider
+$slider = get_theme_mod( 'slider_setting' );
+echo 'Slider value ';
+echo esc_html($slider);
+?>
+
+<!-- sortable -->
+
+<?php
+// Assuming your theme's slug is 'kirki', replace it with your actual theme slug.
+$sorted_options = get_theme_mod('sortable_setting', [ 'option3', 'option1', 'option4' ]);
+
+$options_content = [
+    'option1' => '<div>Content for Option 1</div>',
+    'option2' => '<div>Content for Option 2</div>',
+    'option3' => '<div>Content for Option 3</div>',
+    'option4' => '<div>Content for Option 4</div>',
+    'option5' => '<div>Content for Option 5</div>',
+    'option6' => '<div>Content for Option 6</div>',
+];
+
+
+foreach ($sorted_options as $option) {
+    if (isset($options_content[$option])) {
+        echo $options_content[$option];
+    }
+}
+?>
+
+<?php
+// get_sidebar();
+// get_footer();
