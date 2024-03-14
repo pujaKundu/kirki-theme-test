@@ -315,54 +315,56 @@ new \Kirki\Section(
 	]
 );
 
-new \Kirki\Field\Repeater(
-	[
-		'settings' => 'repeater_setting',
-		'label'    => esc_html__( 'Repeater Control', 'kirki' ),
-		'section'  => 'repeater_section_id',
-		'priority' => 10,
-		'default'  => [
-			[
-				'link_text'   => esc_html__( 'Kirki Site', 'kirki' ),
-				'link_url'    => 'https://kirki.org/',
-				'link_target' => '_self',
-				'checkbox'    => false,
-			],
-			[
-				'link_text'   => esc_html__( 'Kirki WP', 'kirki' ),
-				'link_url'    => 'https://wordpress.org/plugins/kirki/',
-				'link_target' => '_blank',
-				'checkbox'    => true,
-			],
-		],
-		'fields'   => [
-			'link_text'   => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Link Text', 'kirki' ),
-				'description' => esc_html__( 'Description', 'kirki' ),
-				'default'     => '',
-			],
-			'link_url'    => [
-				'type'        => 'text',
-				'label'       => esc_html__( 'Link URL', 'kirki' ),
-				'description' => esc_html__( 'Description', 'kirki' ),
-				'default'     => '',
-			],
-			'link_target' => [
-				'type'        => 'select',
-				'label'       => esc_html__( 'Link Target', 'kirki' ),
-				'description' => esc_html__( 'Description', 'kirki' ),
-				'default'     => '_self',
-				'choices'     => [
-					'_blank' => esc_html__( 'New Window', 'kirki' ),
-					'_self'  => esc_html__( 'Same Frame', 'kirki' ),
-				],
-			],
-			'checkbox'    => [
-				'type'    => 'checkbox',
-				'label'   => esc_html__( 'Checkbox', 'kirki' ),
-				'default' => false,
-			],
-		],
-	]
-);
+new \Kirki\Field\Repeater([
+    'settings' => 'repeater_setting',
+    'label'    => esc_html__('Repeater Control', 'kirki'),
+    'section'  => 'repeater_section_id',
+    'priority' => 10,
+    'fields'   => [
+        'link_text' => [
+            'type'        => 'text',
+            'label'       => esc_html__('Link Text', 'kirki'),
+            'description' => esc_html__('This is the text that will appear as link text.', 'kirki'),
+            'default'     => '',
+        ],
+        'link_url' => [
+            'type'        => 'url',
+            'label'       => esc_html__('Link URL', 'kirki'),
+            'description' => esc_html__('This is the URL the link will point to.', 'kirki'),
+            'default'     => '',
+        ],
+        'link_target' => [
+            'type'        => 'select',
+            'label'       => esc_html__('Link Target', 'kirki'),
+            'description' => esc_html__('Choose whether to open the link in the same window or a new tab.', 'kirki'),
+            'default'     => '_self',
+            'choices'     => [
+                '_blank' => esc_html__('New Window', 'kirki'),
+                '_self'  => esc_html__('Same Frame', 'kirki'),
+            ],
+        ],
+        'checkbox' => [
+            'type'    => 'checkbox',
+            'label'   => esc_html__('Checkbox', 'kirki'),
+            'default' => false,
+        ],
+        'image' => [
+            'type'        => 'image',
+            'label'       => esc_html__('Image', 'kirki'),
+            'description' => esc_html__('Select an image.', 'kirki'),
+            'default'     => '',
+        ],
+        'color' => [
+            'type'        => 'color',
+            'label'       => esc_html__('Color Picker', 'kirki'),
+            'description' => esc_html__('Choose a color.', 'kirki'),
+            'default'     => '#FFFFFF',
+        ],
+        'textarea' => [
+            'type'        => 'textarea',
+            'label'       => esc_html__('Textarea', 'kirki'),
+            'description' => esc_html__('Additional text area for custom content.', 'kirki'),
+            'default'     => '',
+        ],
+    ],
+]);

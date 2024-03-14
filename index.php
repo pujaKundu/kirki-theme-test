@@ -168,29 +168,34 @@ $value = get_theme_mod( 'multicolor_setting', $defaults );
 
 $repeater_items = get_theme_mod('repeater_setting', []);
 
-if (!empty($repeater_items)) {
-    echo '<ul class="custom-repeater-links">';
-    foreach ($repeater_items as $item) {
-       
-        $link_text = isset($item['link_text']) ? esc_html($item['link_text']) : '';
-        $link_url = isset($item['link_url']) ? esc_url($item['link_url']) : '';
-        $link_target = isset($item['link_target']) ? esc_attr($item['link_target']) : '_self';
-        $checkbox_value = isset($item['checkbox']) ? (bool) $item['checkbox'] : false;
+if (is_array($repeater_items) && !empty($repeater_items)) {
+    echo '<div class="custom-repeater-items">';
 
-       
-        echo '<li>';
-        echo '<a href="' . $link_url . '" target="' . $link_target . '">' . $link_text . '</a>';
-       
-        if ($checkbox_value) {
-            echo ' <span>(Important)</span>';
+    foreach ($repeater_items as $item) {
+        $link_text = isset($item['link_text']) ? $item['link_text'] : '';
+        $link_url = isset($item['link_url']) ? $item['link_url'] : '';
+        $link_target = isset($item['link_target']) ? $item['link_target'] : '_self';
+        $image = isset($item['image']) ? $item['image'] : '';
+        $color = isset($item['color']) ? $item['color'] : '';
+        $textarea = isset($item['textarea']) ? $item['textarea'] : '';
+
+        echo '<div class="repeater-item" style="border-color: ' . esc_attr($color) . ';">';
+        if ($image) {
+            echo '<img src="' . esc_url($image) . '" alt="">';
         }
-        echo '</li>';
+        if ($link_text && $link_url) {
+            echo '<a href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '">' . esc_html($link_text) . '</a>';
+        }
+        if ($textarea) {
+            echo '<p style="color: ' . esc_attr($color) . ';">' . esc_textarea($textarea) . '</p>'; 
+        }
+        echo '</div>';
     }
-    echo '</ul>';
-} else {
-    echo '<p>No items found. Please configure them in the customizer.</p>';
+
+    echo '</div>';
 }
 ?>
+
 
 <?php
 // get_sidebar();
