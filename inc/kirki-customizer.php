@@ -37,7 +37,7 @@ new \Kirki\Field\Background(
 		'transport'   => 'auto',
 		'output'      => [
 			[
-				'element' => ['.banner'],
+				'element' => '.banner',
 			],
 		],
 	]
@@ -217,24 +217,151 @@ new \Kirki\Field\Sortable(
 	]
 );
 
-new \Kirki\Field\Background(
+// dimensions
+
+new \Kirki\Section(
+	'dimensions_section_id',
 	[
-		'settings'    => 'sort-background_color',
-		'label'       => esc_html__( 'Background Control', 'kirki' ),
-		'description' => esc_html__( 'Background conrols are pretty complex! (but useful if used properly)', 'kirki' ),
-		'section'     => 'sortable_section_id',
+		'title'       => esc_html__( 'Dimentions Section', 'kirki' ),
+		'description' => esc_html__( 'My Section Description.', 'kirki' ),
+		'panel'       => 'background_panel_id',
+		'priority'    => 160,
+	]
+);
+
+new \Kirki\Field\Dimensions(
+	[
+		'settings'    => 'setting_dimensions_2',
+		'label'       => esc_html__( 'Dimension Control', 'kirki' ),
+		'description' => esc_html__( '4 fields - would typically be used for padding or margin', 'kirki' ),
+		'section'     => 'dimensions_section_id',
 		'default'     => [
-			'background-color'      => '',
-			'background-image'      => '',
-			'background-repeat'     => 'repeat',
-			'background-position'   => 'center center',
-			'background-size'       => 'cover',
-			'background-attachment' => 'scroll',
+			'padding-top'    => '1em',
+			'padding-bottom' => '10rem',
+			'padding-left'   => '1vh',
+			'padding-right'  => '10px',
+            'margin-top'    => '1em',
+			'margin-bottom' => '10rem',
+			'margin-left'   => '1vh',
+			'margin-right'  => '10px',
 		],
-		'transport'   => 'auto',
-		'output'      => [
+        
+	]
+);
+
+// multicolor
+
+new \Kirki\Section(
+	'multicolor_section_id',
+	[
+		'title'       => esc_html__( 'Multicolor Section', 'kirki' ),
+		'description' => esc_html__( 'My Section Description.', 'kirki' ),
+		'panel'       => 'background_panel_id',
+		'priority'    => 160,
+	]
+);
+
+new \Kirki\Field\Multicolor(
+	[
+		'settings'  => 'multicolor_setting',
+		'label'     => esc_html__( 'Multicolor Control', 'kirki' ),
+		'section'   => 'multicolor_section_id',
+		'priority'  => 10,
+		'choices'   => [
+			'link'     => esc_html__( 'Color', 'kirki' ),
+			'hover'    => esc_html__( 'Hover', 'kirki' ),
+			'active'   => esc_html__( 'Active', 'kirki' ),
+		],
+		'alpha'     => true,
+		'default'   => [
+			'link'   => '#0088cc',
+			'hover'  => '#00aaff',
+			'active' => '#00ffff',
+		],
+	]
+);
+
+// editor
+
+new \Kirki\Section(
+	'editor_section_id',
+	[
+		'title'       => esc_html__( 'Editor Section', 'kirki' ),
+		'description' => esc_html__( 'My Section Description.', 'kirki' ),
+		'panel'       => 'background_panel_id',
+		'priority'    => 160,
+	]
+);
+
+new \Kirki\Field\Editor(
+	[
+		'settings'    => 'editor_setting',
+		'label'       => esc_html__( 'My Editor Control', 'kirki' ),
+		'description' => esc_html__( 'This is an editor control.', 'kirki' ),
+		'section'     => 'editor_section_id',
+		'default'     => '',
+	]
+);
+
+// repeater
+
+new \Kirki\Section(
+	'repeater_section_id',
+	[
+		'title'       => esc_html__( 'Reapter Section', 'kirki' ),
+		'description' => esc_html__( 'My Section Description.', 'kirki' ),
+		'panel'       => 'background_panel_id',
+		'priority'    => 160,
+	]
+);
+
+new \Kirki\Field\Repeater(
+	[
+		'settings' => 'repeater_setting',
+		'label'    => esc_html__( 'Repeater Control', 'kirki' ),
+		'section'  => 'repeater_section_id',
+		'priority' => 10,
+		'default'  => [
 			[
-				'element' => ['.sort-option'],
+				'link_text'   => esc_html__( 'Kirki Site', 'kirki' ),
+				'link_url'    => 'https://kirki.org/',
+				'link_target' => '_self',
+				'checkbox'    => false,
+			],
+			[
+				'link_text'   => esc_html__( 'Kirki WP', 'kirki' ),
+				'link_url'    => 'https://wordpress.org/plugins/kirki/',
+				'link_target' => '_blank',
+				'checkbox'    => true,
+			],
+		],
+		'fields'   => [
+			'link_text'   => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Link Text', 'kirki' ),
+				'description' => esc_html__( 'Description', 'kirki' ),
+				'default'     => '',
+			],
+			'link_url'    => [
+				'type'        => 'text',
+				'label'       => esc_html__( 'Link URL', 'kirki' ),
+				'description' => esc_html__( 'Description', 'kirki' ),
+				'default'     => '',
+			],
+			'link_target' => [
+				'type'        => 'select',
+				'label'       => esc_html__( 'Link Target', 'kirki' ),
+				'description' => esc_html__( 'Description', 'kirki' ),
+				'default'     => '_self',
+				'choices'     => [
+					'_blank' => esc_html__( 'New Window', 'kirki' ),
+					'_self'  => esc_html__( 'Same Frame', 'kirki' ),
+				],
+			],
+			'checkbox'    => [
+				'type'    => 'checkbox',
+				'label'   => esc_html__( 'Checkbox', 'kirki' ),
+				'default' => false,
 			],
 		],
 	]
